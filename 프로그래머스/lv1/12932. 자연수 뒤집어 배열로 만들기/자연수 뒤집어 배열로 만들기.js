@@ -1,5 +1,1 @@
-const solution = (n = 12345) =>
-  (n + '')
-    .split('')
-    .reverse()
-    .map((v) => parseInt(v));
+const solution = (n = 12345) => [...(n + '')].reverse().map(v => Number(v));
