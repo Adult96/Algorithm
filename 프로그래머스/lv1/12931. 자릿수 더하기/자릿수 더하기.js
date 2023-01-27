@@ -1,2 +1,2 @@
-const solution = (n = 123) =>
-  [...n.toString()].reduce((a, b) => (a += parseInt(b)), 0);
+const solution = (n = 1234578) =>
+  [...n.toString()].reduce((sum, num) => (sum += Number(num)), 0);
