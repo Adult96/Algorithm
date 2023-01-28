@@ -1,4 +1,4 @@
-function solution(N = 5, stages = [2, 1, 2, 6, 2, 4, 3, 3]) {
+function solution(N, stages) {
   let arr = [stages];
   let rank = [];
 
@@ -6,7 +6,10 @@ function solution(N = 5, stages = [2, 1, 2, 6, 2, 4, 3, 3]) {
     const stage = arr[i - 1].filter(v => v > i);
     arr.push(stage);
 
-    const failStatus = (arr[i - 1].length - arr[i].length) / arr[i - 1].length;
+    const now = arr[i - 1].length;
+    const next = arr[i].length;
+    const failStatus = (now - next) / now;
+
     rank.push([failStatus, i]);
   }
 
