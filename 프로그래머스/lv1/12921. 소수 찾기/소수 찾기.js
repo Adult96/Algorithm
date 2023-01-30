@@ -1,4 +1,4 @@
-function solution(n = 1000000) {
+function solution(n = 3) {
   let cnt = 0;
   for (let i = 2; i <= n; i++) {
     checkIsPrimeNumber(i) && cnt++;
