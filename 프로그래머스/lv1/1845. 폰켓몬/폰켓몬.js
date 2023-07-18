@@ -1,4 +1,5 @@
 function solution(nums = [3, 1, 2, 3]) {
-  const answer = [...new Set(nums)];
-  return answer.length >= nums.length / 2 ? nums.length / 2 : answer.length;
+  const N = nums.length / 2;
+  const parseNums = [...new Set(nums)].length;
+  return parseNums > N ? N : parseNums;
 }
