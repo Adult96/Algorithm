@@ -1,12 +1,10 @@
-function solution(
-  genres = ['classic', 'pop', 'classic', 'classic', 'pop'],
-  plays = [500, 600, 150, 800, 2500]
-) {
+function solution(genres, plays) {
   const hash = {
     arr: {},
     nums: {},
   };
   const answer = [];
+  
   for (let i = 0; i < genres.length; i++) {
     if (hash.arr[genres[i]]) {
       hash.arr[genres[i]].push([i, plays[i]]);
@@ -16,7 +14,7 @@ function solution(
       hash.nums[genres[i]] = plays[i];
     }
   }
-  let maxNum = 0;
+
   let hashNums = [];
 
   for (const key in hash.nums) {
