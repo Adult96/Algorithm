@@ -1,20 +1,20 @@
-function solution(answers) {
-  let one = [1, 2, 3, 4, 5];
-  let two = [2, 1, 2, 3, 2, 4, 2, 5];
-  let three = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5];
+function solution(answers = [1, 2, 3, 4, 5]) {
+  const one = [1, 2, 3, 4, 5];
+  const two = [2, 1, 2, 3, 2, 4, 2, 5];
+  const three = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5];
+  const person = [0, 0, 0];
 
-  let arr = [0, 0, 0];
   for (let i = 0; i < answers.length; i++) {
-    if (answers[i] === one[i % one.length]) arr[0] += 1;
-    if (answers[i] === two[i % two.length]) arr[1] += 1;
-    if (answers[i] === three[i % three.length]) arr[2] += 1;
+    if (one[i % one.length] === answers[i]) person[0] += 1;
+    if (two[i % two.length] === answers[i]) person[1] += 1;
+    if (three[i % three.length] === answers[i]) person[2] += 1;
   }
 
-  let max = Math.max(...arr);
-  let answer = [];
-  if (max === arr[0]) answer.push(1);
-  if (max === arr[1]) answer.push(2);
-  if (max === arr[2]) answer.push(3);
+  const max = Math.max(...person);
+  const result = [];
+  if (max === person[0]) result.push(1);
+  if (max === person[1]) result.push(2);
+  if (max === person[2]) result.push(3);
 
-  return answer;
+  return result;
 }
