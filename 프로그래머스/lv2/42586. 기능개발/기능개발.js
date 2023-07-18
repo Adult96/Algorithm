@@ -1,23 +1,21 @@
-function solution(progresses = [93, 30, 55], speeds = [1, 30, 5]) {
-  const answer = [1];
-  let maxNum = 0;
-  let cnt = 0;
+function solution(
+  progresses = [20, 99, 93, 30, 55, 10],
+  speeds = [5, 10, 1, 1, 30, 5]
+) {
+  const calcDays = progresses.map((v, i) => Math.ceil((100 - v) / speeds[i]));
 
-  const buildDays = progresses.map((v, i) => Math.ceil((100 - v) / speeds[i]));
-
-  buildDays.forEach((v, i, arr) => {
-    if (i) {
-      if (maxNum < v) {
-        cnt++;
-        maxNum = v;
-        answer.push(1);
-      } else {
-        answer[cnt]++;
-      }
+  let cnt = 1;
+  let maxNum = calcDays[0];
+  let answer = [];
+  for (let i = 1; i <= calcDays.length; i++) {
+    if (maxNum >= calcDays[i]) {
+      cnt++;
     } else {
-      maxNum = v;
+      answer.push(cnt);
+      cnt = 1;
+      maxNum = calcDays[i];
     }
-  });
+  }
 
   return answer;
 }
