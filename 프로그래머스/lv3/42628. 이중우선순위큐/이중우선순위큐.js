@@ -11,11 +11,11 @@ function solution(
     } else {
       if (operations[i][1] === '1') {
         const maxNum = Math.max(...queue);
-        const maxIndex = queue.findIndex(v => v === maxNum);
+        const maxIndex = queue.indexOf(maxNum);
         queue.splice(maxIndex, 1);
       } else {
         const minNum = Math.min(...queue);
-        const minIndex = queue.findIndex(v => v === minNum);
+        const minIndex = queue.indexOf(minNum);
         queue.splice(minIndex, 1);
       }
     }
