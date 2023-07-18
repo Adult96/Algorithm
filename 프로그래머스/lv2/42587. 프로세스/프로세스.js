@@ -1,17 +1,18 @@
-function solution(priorities = [1, 1, 9, 1, 1, 1], location = 0) {
-  let answer = [];
-  let list = priorities.map((_, i) => i);
-  let maxNum = Math.max(...priorities);
+function solution(priorities, location) {
+  const prioritiesList = priorities.map((v, i) => [i, v]);
+  let queue = [];
 
   while (priorities.length) {
-    if (priorities[0] < maxNum) {
-      priorities.push(priorities.shift());
-      list.push(list.shift());
+    const maxNum = Math.max(...priorities);
+
+    if (priorities[0] === maxNum) {
+      queue.push(prioritiesList.shift());
+      priorities.shift();
     } else {
-      answer.push([list.shift(), priorities.shift()]);
-      maxNum = Math.max(...priorities);
+      priorities.push(priorities.shift());
+      prioritiesList.push(prioritiesList.shift());
     }
   }
 
-  return answer.findIndex(v => v[0] === location) + 1;
+  return queue.findIndex(v => v[0] === location) + 1;
 }
