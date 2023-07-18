@@ -1,15 +1,20 @@
-function solution(clothes) {
-  let result = 1;
-  let obj = {};
-  clothes.forEach(v => {
-    if (obj[v[1]]) {
-      obj[v[1]] += 1;
-    } else {
-      obj[v[1]] = 1;
-    }
-  });
-  for (let key in obj) {
-    result *= obj[key] + 1;
+function solution(
+  clothes = [
+    ['yellow_hat', 'headgear'],
+    ['blue_sunglasses', 'eyewear'],
+    ['green_turban', 'headgear'],
+  ]
+) {
+  let hash = {};
+  let answer = 1;
+  for (let i = 0; i < clothes.length; i++) {
+    if (hash[clothes[i][1]]) hash[clothes[i][1]] += 1;
+    else hash[clothes[i][1]] = 1;
   }
-  return result - 1;
+
+  for (const key in hash) {
+    answer *= hash[key] + 1;
+  }
+
+  return answer - 1;
 }
