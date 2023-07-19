@@ -7,7 +7,7 @@ function solution(
   ]
 ) {
   let answer = 0;
-  const visited = Array(n).fill(false);
+  let visited = Array(n).fill(false);
 
   for (let i = 0; i < n; i++) {
     if (!visited[i]) {
@@ -16,12 +16,12 @@ function solution(
     }
   }
 
-  function dfs(index) {
-    visited[index] = true;
+  function dfs(i) {
+    visited[i] = true;
 
-    for (let i = 0; i < n; i++) {
-      if (computers[index][i] && !visited[i]) {
-        dfs(i);
+    for (let j = 0; j < computers[0].length; j++) {
+      if (computers[i][j] && !visited[j]) {
+        dfs(j);
       }
     }
   }
