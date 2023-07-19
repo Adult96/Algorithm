@@ -1,37 +1,32 @@
 function solution(
-  tickets = [
-    ['ICN', 'AAD'],
-    ['ICN', 'JFK'],
-    ['JFK', 'ICN'],
+  ticket = [
+    ['ICN', 'A'],
+    ['A', 'C'],
+    ['A', 'D'],
+    ['D', 'B'],
+    ['B', 'A'],
   ]
 ) {
-  const list = {};
+  ticket = ticket.sort((a, b) => a[1].localeCompare(b[1]));
 
-  for (let ticket of tickets) {
-    const [current, next] = ticket;
+  const answer = ['ICN'];
+  const visited = Array(ticket.length).fill(false);
 
-    if (!list[current]) {
-      list[current] = [];
-    }
+  dfs('ICN');
 
-    list[current].push(next);
-  }
+  function dfs(target) {
+    for (let i = 0; i < ticket.length; i++) {
+      if (target === ticket[i][0] && !visited[i]) {
+        visited[i] = true;
+        answer.push(ticket[i][1]);
+        dfs(ticket[i][1]);
 
-  for (const key in list) {
-    list[key].sort();
-  }
-
-  let stack = ['ICN'];
-  let path = [];
-
-  while (stack.length) {
-    const airport = stack[stack.length - 1];
-    if (!list[airport] || list[airport].length === 0) {
-      path.push(stack.pop());
-    } else {
-      stack.push(list[airport].shift());
+        if (answer.length === ticket.length + 1) return true;
+        answer.pop();
+        visited[i] = false;
+      }
     }
   }
 
-  return path.reverse();
+  return answer;
 }
