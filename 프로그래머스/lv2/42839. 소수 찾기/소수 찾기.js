@@ -1,24 +1,24 @@
-function solution(numbers = '011') {
-  numbers = [...numbers].map(Number);
+function solution(numbers = '123') {
+  numbers = numbers.split('').map(Number);
 
-  const allPermutations = getAllPermutations(numbers).map(v =>
+  const permutations = getAllPermutations(numbers).map(v =>
     parseInt(v.join(''))
   );
-  return [...new Set(allPermutations)]
-    .map(value => isPrime(value))
-    .filter(v => v).length;
+
+  return [...new Set(permutations)].map(v => isPrime(v)).filter(v => v).length;
 }
 
-function getPermutations(arr, num) {
+function getPermutataions(arr, num) {
   const result = [];
 
   if (num === 1) return arr.map(v => [v]);
 
-  arr.forEach((fixed, i, origin) => {
-    const rest = [...origin.slice(0, i), ...origin.slice(i + 1)];
-    const combinations = getPermutations(rest, num - 1);
-    const attached = combinations.map(v => [fixed, ...v]);
-    result.push(...attached);
+  arr.forEach((fixed, index, origin) => {
+    const rest = [...origin.slice(0, index), ...origin.slice(index + 1)];
+    const permutation = getPermutataions(rest, num - 1);
+    const attahed = permutation.map(v => [fixed, ...v]);
+
+    result.push(...attahed);
   });
 
   return result;
@@ -28,18 +28,18 @@ function getAllPermutations(arr) {
   const result = [];
 
   arr.forEach((_, index, origin) => {
-    result.push(...getPermutations(origin, index + 1));
+    result.push(...getPermutataions(origin, index + 1));
   });
 
   return result;
 }
 
 function isPrime(num) {
-  if (num === 1 || num === 0) return false;
+  if (num === 0 || num === 1) return false;
 
   for (let i = 2; i <= parseInt(Math.sqrt(num)); i++) {
     if (num % i === 0) return false;
   }
 
-  return num;
+  return true;
 }
