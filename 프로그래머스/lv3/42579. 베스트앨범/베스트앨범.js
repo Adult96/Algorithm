@@ -25,7 +25,7 @@ function solution(genres, plays) {
   hashNums.sort((a, b) => b[0] - a[0]);
 
   hashNums.forEach(key => {
-    return answer.push(hash.arr[key[1]].slice(0, 2).map(v => v[0]));
+    answer.push(hash.arr[key[1]].slice(0, 2).map(v => v[0]));
   });
 
   return answer.flat();
