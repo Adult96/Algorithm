@@ -1,4 +1,4 @@
-function solution(numbers = '123') {
+function solution(numbers) {
   numbers = numbers.split('').map(Number);
 
   const permutations = getAllPermutations(numbers).map(v =>
